@@ -3,10 +3,10 @@ import type { ButtonHTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAt
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
 
 const buttonClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-good text-app shadow-lg shadow-good/10',
-  secondary: 'bg-panel-soft text-ink ring-1 ring-line',
-  danger: 'bg-bad text-app',
-  ghost: 'bg-transparent text-ink ring-1 ring-line',
+  primary: 'bg-blue text-white',
+  secondary: 'bg-ink-dark text-white',
+  danger: 'bg-ink-dark text-white',
+  ghost: 'bg-transparent text-link-dark ring-1 ring-link-dark',
 };
 
 /**
@@ -43,7 +43,7 @@ export function AppButton({
 }: AppButtonProps) {
   return (
     <button
-      className={`min-tap rounded-lg px-4 py-3 text-sm font-bold uppercase tracking-normal transition active:opacity-80 disabled:cursor-not-allowed disabled:opacity-50 ${buttonClasses[variant]} ${className}`}
+      className={`min-tap rounded-full px-4 py-2 text-base font-normal leading-tight tracking-normal transition hover:brightness-110 focus:outline-2 focus:outline-blue active:bg-button-active active:text-ink-dark disabled:cursor-not-allowed disabled:opacity-50 ${buttonClasses[variant]} ${className}`}
       {...props}
     >
       {children}
@@ -77,9 +77,9 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 export function TextInput({ label, className = '', ...props }: TextInputProps) {
   return (
     <label className={`grid gap-2 text-sm text-muted ${className}`}>
-      <span>{label}</span>
+      <span className="font-semibold">{label}</span>
       <input
-        className="min-tap rounded-lg border border-line bg-panel px-3 text-ink outline-none transition focus:border-good"
+        className="min-tap rounded-xl border-4 border-black/5 bg-panel-soft px-4 text-ink-dark outline-none transition placeholder:text-tertiary focus:outline-2 focus:outline-blue"
         {...props}
       />
     </label>
@@ -114,9 +114,9 @@ export interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement
 export function SelectField({ label, children, ...props }: SelectFieldProps) {
   return (
     <label className="grid gap-2 text-sm text-muted">
-      <span>{label}</span>
+      <span className="font-semibold">{label}</span>
       <select
-        className="min-tap rounded-lg border border-line bg-panel px-3 text-ink outline-none transition focus:border-good"
+        className="min-tap rounded-xl border-4 border-black/5 bg-panel-soft px-4 text-ink-dark outline-none transition focus:outline-2 focus:outline-blue"
         {...props}
       >
         {children}
@@ -135,7 +135,7 @@ export function SelectField({ label, children, ...props }: SelectFieldProps) {
  *   Elemento visual skeleton.
  */
 export function SkeletonBlock({ className = 'h-12' }: { className?: string }) {
-  return <div className={`animate-pulse rounded-lg bg-panel-soft ${className}`} />;
+  return <div className={`animate-pulse rounded-lg bg-black/10 ${className}`} />;
 }
 
 /**
@@ -150,8 +150,8 @@ export function SkeletonBlock({ className = 'h-12' }: { className?: string }) {
  */
 export function EmptyState({ title, detail }: { title: string; detail?: string }) {
   return (
-    <div className="rounded-lg border border-line bg-panel p-4 text-center">
-      <p className="font-semibold text-ink">{title}</p>
+    <div className="rounded-lg bg-panel p-5 text-center text-ink-dark apple-card-shadow">
+      <p className="font-semibold">{title}</p>
       {detail ? <p className="mt-1 text-sm text-muted">{detail}</p> : null}
     </div>
   );

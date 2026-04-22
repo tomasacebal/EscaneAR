@@ -38,21 +38,24 @@ export default function ProductDetailScreen({ product, onBack }: ProductDetailSc
   );
 
   return (
-    <main className="h-body overflow-y-auto bg-app p-4 pt-safe text-ink">
-      <header className="mb-5 flex items-start justify-between gap-3">
+    <main className="h-body overflow-y-auto bg-page text-ink-dark">
+      <header className="apple-glass sticky top-0 z-10 flex min-h-12 items-center justify-between gap-3 px-4 pt-safe text-white">
         <div className="min-w-0">
-          <p className="font-mono text-sm text-good">DETALLE</p>
-          <h1 className="text-2xl font-bold leading-tight">{product.description}</h1>
-          <p className="mt-1 text-sm text-muted">
-            {product.brand} · {product.quantity} {product.unit}
-          </p>
+          <p className="text-xs text-white/70">DETALLE</p>
+          <h1 className="truncate text-base font-semibold">{product.description}</h1>
         </div>
         <AppButton variant="ghost" onClick={onBack}>
           Volver
         </AppButton>
       </header>
 
-      <section className="grid gap-4">
+      <section className="mx-auto grid max-w-3xl gap-5 px-4 py-6">
+        <div>
+          <h2 className="font-display text-4xl font-semibold leading-tight">{product.description}</h2>
+          <p className="mt-2 text-lg text-muted">
+            {product.brand} · {product.quantity} {product.unit}
+          </p>
+        </div>
         <div>
           <h2 className="mb-2 font-bold">Evolucion</h2>
           <Sparkline values={sortedPrices.map((item) => item.price)} />
@@ -68,10 +71,10 @@ export default function ProductDetailScreen({ product, onBack }: ProductDetailSc
           ) : sortedPrices.length > 0 ? (
             <div className="grid gap-2">
               {sortedPrices.map((item) => (
-                <article key={`${item.supermarket_id}-${item.created_at}`} className="rounded-lg bg-panel p-3">
+                <article key={`${item.supermarket_id}-${item.created_at}`} className="rounded-lg bg-panel p-4 apple-card-shadow">
                   <div className="flex items-center justify-between gap-3">
                     <p className="font-semibold">{item.supermarket_name}</p>
-                    <p className="font-mono text-good">{formatPrice(item.price)}</p>
+                    <p className="font-mono text-link">{formatPrice(item.price)}</p>
                   </div>
                   <p className="mt-1 text-xs text-muted">{formatRelativeDate(item.created_at)}</p>
                 </article>

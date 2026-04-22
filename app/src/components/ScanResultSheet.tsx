@@ -134,7 +134,7 @@ export function ScanResultSheet({
     <BottomSheet open={open} title={title} onClose={onClose}>
       {product ? (
         <div className="grid gap-5">
-          <section className="rounded-lg border border-line bg-panel-soft p-4">
+          <section className="rounded-lg bg-panel p-4 apple-card-shadow">
             <p className="text-xl font-bold">{product.description}</p>
             <p className="text-sm text-muted">
               {product.brand} · {product.quantity} {product.unit}
@@ -144,7 +144,7 @@ export function ScanResultSheet({
           {latestPrice ? (
             <section className="grid gap-3">
               <p className="font-semibold">Sigue al mismo precio?</p>
-              <p className="font-mono text-2xl text-good">{formatPrice(latestPrice.price)}</p>
+              <p className="font-mono text-2xl text-link">{formatPrice(latestPrice.price)}</p>
               <div className="grid grid-cols-2 gap-2">
                 <AppButton onClick={() => savePrice(product, latestPrice.price)}>Si</AppButton>
                 <AppButton variant="danger" onClick={() => setShowPriceInput(true)}>
@@ -153,7 +153,7 @@ export function ScanResultSheet({
               </div>
             </section>
           ) : (
-            <p className="rounded-lg bg-panel-soft p-3 text-sm text-muted">
+            <p className="rounded-lg bg-panel p-4 text-sm text-muted apple-card-shadow">
               No hay precio previo para este supermercado.
             </p>
           )}

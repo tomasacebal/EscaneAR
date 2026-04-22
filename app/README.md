@@ -65,4 +65,4 @@ Ademas se registra una cola local minima para mostrar escrituras pendientes en l
 - La pantalla inicial ofrece CARGA y LECTURA con targets tactiles grandes.
 - CARGA fija un supermercado por sesion antes de activar camara.
 - LECTURA usa busqueda con debounce de 300 ms y listas virtualizadas.
-- La UI usa modo oscuro por defecto con acento verde lima para buenos precios.
+- La UI sigue `DESIGN.md`: ritmo negro/gris claro, glass nav y azul como unico acento interactivo.

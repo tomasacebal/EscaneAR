@@ -68,9 +68,9 @@ export const BarcodeScanner = memo(function BarcodeScanner({ active, onDetected 
     <div className="relative min-h-96 flex-1 overflow-hidden bg-black">
       <video ref={videoRef} className="h-full min-h-96 w-full object-cover" muted playsInline />
       <div className="pointer-events-none absolute inset-0 grid place-items-center bg-black/20">
-        <div className="h-28 w-72 max-w-xs rounded-xl border-2 border-good bg-app/10" />
+        <div className="h-28 w-72 max-w-xs rounded-xl border-2 border-blue bg-app/10" />
       </div>
-      <div className="absolute bottom-4 left-4 right-4 rounded-lg bg-app/80 p-3 text-center text-sm text-muted backdrop-blur">
+      <div className="apple-glass absolute bottom-4 left-4 right-4 rounded-lg p-3 text-center text-sm text-white">
         Alinea el codigo dentro del marco
       </div>
       {error ? (

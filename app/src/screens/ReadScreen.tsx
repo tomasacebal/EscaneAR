@@ -52,18 +52,19 @@ export default function ReadScreen({ onBack, onOpenProduct }: ReadScreenProps) {
   }, [products.data, supermarketId, unit]);
 
   return (
-    <main className="h-body overflow-y-auto bg-app p-4 pt-safe text-ink">
-      <header className="mb-4 flex items-center justify-between gap-3">
+    <main className="h-body overflow-y-auto bg-page text-ink-dark">
+      <header className="apple-glass sticky top-0 z-10 flex min-h-12 items-center justify-between gap-3 px-4 pt-safe text-white">
         <div>
-          <p className="font-mono text-sm text-good">LECTURA</p>
-          <h1 className="text-2xl font-bold">Productos</h1>
+          <p className="text-xs text-white/70">LECTURA</p>
+          <h1 className="text-base font-semibold">Productos</h1>
         </div>
         <AppButton variant="ghost" onClick={onBack}>
           Volver
         </AppButton>
       </header>
 
-      <section className="grid gap-3">
+      <section className="mx-auto grid max-w-5xl gap-3 px-4 py-6">
+        <h2 className="font-display text-4xl font-semibold leading-tight">Buscar precios.</h2>
         <TextInput
           label="Buscar"
           value={query}
@@ -93,7 +94,7 @@ export default function ReadScreen({ onBack, onOpenProduct }: ReadScreenProps) {
         </div>
       </section>
 
-      <section className="mt-4">
+      <section className="mx-auto mt-2 max-w-5xl px-4">
         {products.isLoading ? (
           <div className="grid gap-2">
             <SkeletonBlock />

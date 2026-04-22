@@ -27,22 +27,26 @@ export interface HomeScreenProps {
  */
 export default function HomeScreen({ onLoad, onRead }: HomeScreenProps) {
   return (
-    <main className="flex h-body flex-col justify-between overflow-hidden bg-app p-5 pt-safe text-ink">
-      <header>
-        <p className="font-mono text-sm uppercase text-good">EscaneAR</p>
-        <h1 className="mt-2 break-words text-3xl font-bold leading-tight md:text-4xl">
-          Comparador de precios
+    <main className="flex h-body flex-col overflow-hidden bg-app text-ink">
+      <nav className="apple-glass flex h-12 shrink-0 items-center justify-center px-5 pt-safe">
+        <p className="text-xs tracking-normal text-white">EscaneAR</p>
+      </nav>
+
+      <header className="flex flex-1 flex-col items-center justify-center px-5 text-center">
+        <p className="mb-3 text-sm text-link-dark">Comparador mobile</p>
+        <h1 className="w-full max-w-xs break-words font-display text-3xl font-semibold leading-tight md:max-w-4xl md:text-6xl">
+          Precios claros.
         </h1>
-        <p className="mt-3 max-w-md text-muted">
-          Escanea productos, carga precios y consulta mejores opciones desde el super.
+        <p className="mt-4 w-full max-w-72 text-lg leading-tight text-muted-dark md:max-w-lg md:text-xl">
+          Escanea y compara en segundos.
         </p>
       </header>
 
-      <section className="grid gap-4 pb-safe">
-        <AppButton className="min-h-28 text-2xl" onClick={onLoad}>
+      <section className="mx-auto grid w-full max-w-xs gap-3 pb-safe md:max-w-md">
+        <AppButton className="w-full" onClick={onLoad}>
           CARGA
         </AppButton>
-        <AppButton className="min-h-28 text-2xl" variant="secondary" onClick={onRead}>
+        <AppButton className="w-full" variant="ghost" onClick={onRead}>
           LECTURA
         </AppButton>
       </section>

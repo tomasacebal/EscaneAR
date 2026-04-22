@@ -23,14 +23,14 @@ function SimilarRow({ index, style, data }: ListChildComponentProps<SimilarProdu
   const item = data[index];
   return (
     <div style={style} className="px-1 py-1">
-      <div className="flex h-full items-center justify-between gap-3 rounded-lg bg-panel-soft px-3">
+      <div className="flex h-full items-center justify-between gap-3 rounded-lg bg-panel px-4 text-ink-dark apple-card-shadow">
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold">{item.product.description}</p>
           <p className="truncate text-xs text-muted">
             {item.product.brand} · {item.supermarket_name}
           </p>
         </div>
-        <p className="font-mono text-good">{formatPrice(item.best_price)}</p>
+        <p className="font-mono text-link">{formatPrice(item.best_price)}</p>
       </div>
     </div>
   );

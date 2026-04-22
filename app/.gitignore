@@ -4,5 +4,6 @@ dev-dist/
 .codex-*.log
 .codex-*.err
 .codex-*.png
+.codex-*/
 .env
 *.tsbuildinfo

@@ -65,7 +65,7 @@ export function BottomSheet({ open, title, children, onClose }: BottomSheetProps
     <div className="fixed inset-0 z-40 flex items-end bg-app/70 backdrop-blur-sm">
       <button className="absolute inset-0 cursor-default" aria-label="Cerrar" onClick={onClose} />
       <section
-        className="pb-safe relative z-10 max-h-dvh w-full overflow-y-auto rounded-t-2xl border border-line bg-panel p-4 shadow-2xl transition-transform"
+        className="pb-safe apple-card-shadow relative z-10 max-h-dvh w-full overflow-y-auto rounded-t-xl bg-panel p-5 text-ink-dark transition-transform"
         style={{ transform: `translateY(${dragOffset}px)` }}
         aria-label={title}
       >
@@ -76,7 +76,7 @@ export function BottomSheet({ open, title, children, onClose }: BottomSheetProps
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
         >
-          <div className="h-1.5 w-12 rounded-full bg-line" />
+          <div className="h-1.5 w-12 rounded-full bg-black/20" />
           <h2 className="text-center text-lg font-bold">{title}</h2>
         </div>
         {children}

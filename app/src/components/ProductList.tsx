@@ -28,7 +28,7 @@ function ProductRow({ index, style, data }: ListChildComponentProps<ProductRowDa
   return (
     <div style={style} className="px-1 py-1">
       <button
-        className="flex h-full w-full items-center justify-between gap-3 rounded-lg border border-line bg-panel px-3 text-left transition active:opacity-90"
+        className="flex h-full w-full items-center justify-between gap-3 rounded-lg bg-panel px-4 text-left text-ink-dark transition active:bg-button-active apple-card-shadow"
         onClick={() => data.onSelect(product)}
       >
         <span className="min-w-0">
@@ -37,7 +37,7 @@ function ProductRow({ index, style, data }: ListChildComponentProps<ProductRowDa
             {product.brand} · {product.quantity} {product.unit}
           </span>
         </span>
-        <span className="rounded-full bg-panel-soft px-3 py-1 text-xs uppercase text-muted">
+        <span className="rounded-full text-xs text-link">
           Ver
         </span>
       </button>

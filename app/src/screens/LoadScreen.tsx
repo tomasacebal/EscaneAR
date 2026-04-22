@@ -65,28 +65,33 @@ export default function LoadScreen({ onBack }: LoadScreenProps) {
 
   if (!selectedSupermarket) {
     return (
-      <main className="h-body overflow-y-auto bg-app p-5 pt-safe text-ink">
-        <header className="mb-5 flex items-center justify-between gap-3">
+      <main className="h-body overflow-y-auto bg-page text-ink-dark">
+        <header className="apple-glass sticky top-0 z-10 flex min-h-12 items-center justify-between gap-3 px-4 pt-safe text-white">
           <div>
-            <p className="font-mono text-sm text-good">CARGA</p>
-            <h1 className="text-2xl font-bold">Elegir supermercado</h1>
+            <p className="text-xs text-white/80">CARGA</p>
+            <h1 className="text-base font-semibold">Elegir supermercado</h1>
           </div>
           <AppButton variant="ghost" onClick={onBack}>
             Volver
           </AppButton>
         </header>
-        <SupermarketPicker selected={selectedSupermarket} onSelect={setSelectedSupermarket} />
+        <section className="mx-auto max-w-3xl px-5 py-8">
+          <h2 className="mb-5 font-display text-4xl font-semibold leading-tight">
+            Selecciona tu sesion.
+          </h2>
+          <SupermarketPicker selected={selectedSupermarket} onSelect={setSelectedSupermarket} />
+        </section>
       </main>
     );
   }
 
   return (
     <main className="flex h-body flex-col overflow-hidden bg-app text-ink">
-      <header className="z-10 border-b border-line bg-app/95 px-4 py-3 pt-safe backdrop-blur">
+      <header className="apple-glass z-10 px-4 py-2 pt-safe">
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
-            <p className="font-mono text-xs text-good">CARGA</p>
-            <h1 className="truncate text-lg font-bold">{selectedSupermarket.name}</h1>
+            <p className="text-xs text-white/70">CARGA</p>
+            <h1 className="truncate text-base font-semibold">{selectedSupermarket.name}</h1>
           </div>
           <div className="flex gap-2">
             <AppButton variant="ghost" onClick={() => setSelectedSupermarket(null)}>
@@ -98,7 +103,7 @@ export default function LoadScreen({ onBack }: LoadScreenProps) {
           </div>
         </div>
         {pendingWrites.length > 0 ? (
-          <p className="mt-2 rounded-lg bg-panel-soft px-3 py-2 text-xs text-warn">
+          <p className="mt-2 rounded-lg bg-dark-panel px-3 py-2 text-xs text-white/80">
             {pendingWrites.length} escritura offline pendiente
           </p>
         ) : null}
@@ -106,8 +111,8 @@ export default function LoadScreen({ onBack }: LoadScreenProps) {
 
       <BarcodeScanner active={Boolean(selectedSupermarket)} onDetected={handleDetected} />
 
-      <section className="border-t border-line bg-app p-3 pb-safe">
-        <h2 className="mb-2 text-sm font-bold uppercase text-muted">Historial de sesion</h2>
+      <section className="bg-page p-3 pb-safe text-ink-dark">
+        <h2 className="mb-2 text-sm font-semibold text-muted">Historial de sesion</h2>
         <SessionHistoryList items={history} />
       </section>
 
