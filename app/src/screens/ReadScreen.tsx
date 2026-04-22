@@ -52,26 +52,27 @@ export default function ReadScreen({ onBack, onOpenProduct }: ReadScreenProps) {
   }, [products.data, supermarketId, unit]);
 
   return (
-    <main className="h-body overflow-y-auto bg-page text-ink-dark">
-      <header className="apple-glass sticky top-0 z-10 flex min-h-12 items-center justify-between gap-3 px-4 pt-safe text-white">
+    <main className="h-body overflow-y-auto bg-page text-white">
+      <header className="verge-nav sticky top-0 z-10 flex min-h-12 items-center justify-between gap-3 px-4 pt-safe text-white">
         <div>
-          <p className="text-xs text-white/70">LECTURA</p>
-          <h1 className="text-base font-semibold">Productos</h1>
+          <p className="verge-label text-muted">LECTURA</p>
+          <h1 className="text-base font-bold uppercase tracking-wide">Productos</h1>
         </div>
         <AppButton variant="ghost" onClick={onBack}>
           Volver
         </AppButton>
       </header>
 
-      <section className="mx-auto grid max-w-5xl gap-3 px-4 py-6">
-        <h2 className="font-display text-4xl font-semibold leading-tight">Buscar precios.</h2>
+      <section className="mx-auto grid max-w-7xl gap-4 px-4 py-6 md:px-12">
+        <p className="verge-label text-blue">STORYSTREAM</p>
+        <h2 className="text-3xl font-bold leading-none text-white md:text-4xl">Buscar precios.</h2>
         <TextInput
           label="Buscar"
           value={query}
           placeholder="Producto, marca o termino"
           onChange={(event) => setQuery(event.target.value)}
         />
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid gap-3 sm:grid-cols-2">
           <SelectField
             label="Supermercado"
             value={supermarketId}
@@ -94,7 +95,7 @@ export default function ReadScreen({ onBack, onOpenProduct }: ReadScreenProps) {
         </div>
       </section>
 
-      <section className="mx-auto mt-2 max-w-5xl px-4">
+      <section className="mx-auto mt-2 max-w-7xl px-4 pb-8 md:px-12">
         {products.isLoading ? (
           <div className="grid gap-2">
             <SkeletonBlock />

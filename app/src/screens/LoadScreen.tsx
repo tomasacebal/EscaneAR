@@ -65,18 +65,19 @@ export default function LoadScreen({ onBack }: LoadScreenProps) {
 
   if (!selectedSupermarket) {
     return (
-      <main className="h-body overflow-y-auto bg-page text-ink-dark">
-        <header className="apple-glass sticky top-0 z-10 flex min-h-12 items-center justify-between gap-3 px-4 pt-safe text-white">
+      <main className="h-body overflow-y-auto bg-page text-white">
+        <header className="verge-nav sticky top-0 z-10 flex min-h-12 items-center justify-between gap-3 px-4 pt-safe text-white">
           <div>
-            <p className="text-xs text-white/80">CARGA</p>
-            <h1 className="text-base font-semibold">Elegir supermercado</h1>
+            <p className="verge-label text-muted">CARGA</p>
+            <h1 className="text-base font-bold uppercase tracking-wide">Elegir supermercado</h1>
           </div>
           <AppButton variant="ghost" onClick={onBack}>
             Volver
           </AppButton>
         </header>
-        <section className="mx-auto max-w-3xl px-5 py-8">
-          <h2 className="mb-5 font-display text-4xl font-semibold leading-tight">
+        <section className="mx-auto max-w-4xl px-5 py-8 md:px-12">
+          <p className="verge-label mb-3 text-blue">SETUP</p>
+          <h2 className="mb-5 text-3xl font-bold leading-none text-white md:text-4xl">
             Selecciona tu sesion.
           </h2>
           <SupermarketPicker selected={selectedSupermarket} onSelect={setSelectedSupermarket} />
@@ -87,11 +88,11 @@ export default function LoadScreen({ onBack }: LoadScreenProps) {
 
   return (
     <main className="flex h-body flex-col overflow-hidden bg-app text-ink">
-      <header className="apple-glass z-10 px-4 py-2 pt-safe">
+      <header className="verge-nav z-10 px-4 py-2 pt-safe">
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
-            <p className="text-xs text-white/70">CARGA</p>
-            <h1 className="truncate text-base font-semibold">{selectedSupermarket.name}</h1>
+            <p className="verge-label text-muted">CARGA</p>
+            <h1 className="truncate text-base font-bold uppercase tracking-wide">{selectedSupermarket.name}</h1>
           </div>
           <div className="flex gap-2">
             <AppButton variant="ghost" onClick={() => setSelectedSupermarket(null)}>
@@ -103,7 +104,7 @@ export default function LoadScreen({ onBack }: LoadScreenProps) {
           </div>
         </div>
         {pendingWrites.length > 0 ? (
-          <p className="mt-2 rounded-lg bg-dark-panel px-3 py-2 text-xs text-white/80">
+          <p className="verge-card mt-2 px-3 py-2 text-xs text-muted-dark">
             {pendingWrites.length} escritura offline pendiente
           </p>
         ) : null}
@@ -111,8 +112,8 @@ export default function LoadScreen({ onBack }: LoadScreenProps) {
 
       <BarcodeScanner active={Boolean(selectedSupermarket)} onDetected={handleDetected} />
 
-      <section className="bg-page p-3 pb-safe text-ink-dark">
-        <h2 className="mb-2 text-sm font-semibold text-muted">Historial de sesion</h2>
+      <section className="bg-page p-3 pb-safe text-white">
+        <h2 className="verge-label mb-2 text-muted">Historial de sesion</h2>
         <SessionHistoryList items={history} />
       </section>
 

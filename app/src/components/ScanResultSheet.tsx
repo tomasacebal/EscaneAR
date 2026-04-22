@@ -134,16 +134,17 @@ export function ScanResultSheet({
     <BottomSheet open={open} title={title} onClose={onClose}>
       {product ? (
         <div className="grid gap-5">
-          <section className="rounded-lg bg-panel p-4 apple-card-shadow">
-            <p className="text-xl font-bold">{product.description}</p>
+          <section className="verge-card p-5">
+            <p className="verge-label text-blue">PRODUCTO</p>
+            <p className="mt-2 text-2xl font-bold leading-none text-white">{product.description}</p>
             <p className="text-sm text-muted">
-              {product.brand} · {product.quantity} {product.unit}
+              {product.brand} - {product.quantity} {product.unit}
             </p>
           </section>
 
           {latestPrice ? (
             <section className="grid gap-3">
-              <p className="font-semibold">Sigue al mismo precio?</p>
+              <p className="verge-label text-muted">Sigue al mismo precio?</p>
               <p className="font-mono text-2xl text-link">{formatPrice(latestPrice.price)}</p>
               <div className="grid grid-cols-2 gap-2">
                 <AppButton onClick={() => savePrice(product, latestPrice.price)}>Si</AppButton>
@@ -153,7 +154,7 @@ export function ScanResultSheet({
               </div>
             </section>
           ) : (
-            <p className="rounded-lg bg-panel p-4 text-sm text-muted apple-card-shadow">
+            <p className="verge-card p-4 text-sm text-muted">
               No hay precio previo para este supermercado.
             </p>
           )}
@@ -174,7 +175,7 @@ export function ScanResultSheet({
           ) : null}
 
           <section className="grid gap-3">
-            <h3 className="font-bold">Comparativa</h3>
+            <h3 className="verge-label text-blue">Comparativa</h3>
             <PriceComparison
               prices={compare.data ?? []}
               currentSupermarketId={supermarket.id}
@@ -183,7 +184,7 @@ export function ScanResultSheet({
           </section>
 
           <section className="grid gap-3">
-            <h3 className="font-bold">Productos similares - mejores precios</h3>
+            <h3 className="verge-label text-blue">Productos similares - mejores precios</h3>
             {(similar.data ?? []).length === 0 ? (
               <TextInput
                 label="Buscar comparable"

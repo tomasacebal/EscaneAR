@@ -29,15 +29,15 @@ export const Sparkline = memo(function Sparkline({ values }: SparklineProps) {
   }, [values]);
 
   if (values.length === 0) {
-    return <div className="h-16 rounded-lg bg-black/10" />;
+    return <div className="verge-card h-16" />;
   }
 
   return (
-    <div className="flex h-20 items-end gap-1 rounded-lg bg-panel p-2 apple-card-shadow">
+    <div className="verge-card flex h-20 items-end gap-1 p-3">
       {bars.map((height, index) => (
         <div
           key={`${height}-${index}`}
-          className="flex-1 rounded-t bg-blue"
+          className="flex-1 rounded-t-sm bg-blue"
           style={{ height: `${height}%` }}
           aria-hidden="true"
         />

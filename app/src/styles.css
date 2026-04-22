@@ -1,33 +1,39 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-app: #000000;
-  --color-page: #f5f5f7;
-  --color-panel: #f5f5f7;
-  --color-panel-soft: #fafafc;
-  --color-dark-panel: #272729;
-  --color-dark-panel-soft: #2a2a2d;
+  --color-app: #131313;
+  --color-page: #131313;
+  --color-panel: #2d2d2d;
+  --color-panel-soft: #131313;
+  --color-dark-panel: #2d2d2d;
+  --color-dark-panel-soft: #3f3f46;
   --color-ink: #ffffff;
-  --color-ink-dark: #1d1d1f;
-  --color-muted: rgba(0, 0, 0, 0.8);
-  --color-muted-dark: rgba(255, 255, 255, 0.78);
-  --color-tertiary: rgba(0, 0, 0, 0.48);
-  --color-blue: #0071e3;
-  --color-link: #0066cc;
-  --color-link-dark: #2997ff;
-  --color-button-active: #ededf2;
-  --font-sans: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-display: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-mono: 'SF Mono', 'SFMono-Regular', ui-monospace, monospace;
+  --color-ink-dark: #ffffff;
+  --color-muted: #949494;
+  --color-muted-dark: #e9e9e9;
+  --color-tertiary: #949494;
+  --color-blue: #3cffd0;
+  --color-link: #3cffd0;
+  --color-link-dark: #3cffd0;
+  --color-button-active: rgba(140, 140, 140, 0.87);
+  --color-verge-purple: #5200ff;
+  --color-verge-blue: #3860be;
+  --color-verge-focus: #1eaedb;
+  --color-verge-rule: #3d00bf;
+  --color-verge-frame: #313131;
+  --color-verge-hover-ring: #c2c2c2;
+  --font-sans: 'PolySans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Manuka', Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
+  --font-mono: 'PolySans Mono', 'Courier New', Courier, monospace;
   --height-body: 100dvh;
 }
 
 :root {
   color-scheme: dark;
-  background: #000000;
-  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #131313;
+  font-family: 'PolySans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #ffffff;
-  letter-spacing: -0.374px;
+  letter-spacing: 0.15px;
 }
 
 * {
@@ -42,7 +48,7 @@ body,
 }
 
 body {
-  background: #000000;
+  background: #131313;
   overflow: hidden;
 }
 
@@ -56,9 +62,14 @@ button {
   touch-action: manipulation;
 }
 
+button:not(:disabled),
+[role='button'] {
+  cursor: pointer;
+}
+
 ::selection {
-  background: #0071e3;
-  color: #ffffff;
+  background: #3cffd0;
+  color: #000000;
 }
 
 @utility pb-safe {
@@ -74,11 +85,72 @@ button {
   min-width: 48px;
 }
 
-@utility apple-glass {
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: saturate(180%) blur(20px);
+@utility verge-nav {
+  background: #131313;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.85);
 }
 
-@utility apple-card-shadow {
-  box-shadow: rgba(0, 0, 0, 0.22) 3px 5px 30px 0;
+@utility verge-ring {
+  border: 1px solid #3cffd0;
+  box-shadow: rgba(0, 0, 0, 0.33) 0 0 0 1px;
+}
+
+@utility verge-label {
+  font-family: 'PolySans Mono', 'Courier New', Courier, monospace;
+  font-size: 0.69rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+@utility verge-button-label {
+  font-family: 'PolySans Mono', 'Courier New', Courier, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  line-height: 2;
+  text-transform: uppercase;
+}
+
+@utility verge-display {
+  font-family: 'Manuka', Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
+  font-weight: 900;
+  letter-spacing: 1.07px;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+@utility verge-whisper {
+  font-size: 1.19rem;
+  font-weight: 300;
+  letter-spacing: 1.9px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+@utility verge-card {
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  background: #2d2d2d;
+  box-shadow: none;
+}
+
+@utility verge-accent-card {
+  border: 1px solid #309875;
+  border-radius: 24px;
+  background: #3cffd0;
+  color: #000000;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

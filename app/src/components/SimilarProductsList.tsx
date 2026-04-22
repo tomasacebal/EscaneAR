@@ -21,13 +21,14 @@ export interface SimilarProductsListProps {
 
 function SimilarRow({ index, style, data }: ListChildComponentProps<SimilarProduct[]>) {
   const item = data[index];
+
   return (
-    <div style={style} className="px-1 py-1">
-      <div className="flex h-full items-center justify-between gap-3 rounded-lg bg-panel px-4 text-ink-dark apple-card-shadow">
+    <div style={style} className="border-l border-verge-rule px-3 py-1">
+      <div className="verge-card flex h-full items-center justify-between gap-3 px-4 text-white">
         <div className="min-w-0">
-          <p className="truncate text-sm font-semibold">{item.product.description}</p>
-          <p className="truncate text-xs text-muted">
-            {item.product.brand} · {item.supermarket_name}
+          <p className="truncate text-sm font-bold leading-none">{item.product.description}</p>
+          <p className="verge-label mt-1 truncate text-muted">
+            {item.product.brand} - {item.supermarket_name}
           </p>
         </div>
         <p className="font-mono text-link">{formatPrice(item.price)}</p>
@@ -35,6 +36,11 @@ function SimilarRow({ index, style, data }: ListChildComponentProps<SimilarProdu
     </div>
   );
 }
+
+const getSimilarItemKey = (index: number, data: SimilarProduct[]) => {
+  const item = data[index];
+  return item ? `${item.product.id}-${item.supermarket_id}-${item.recorded_at}` : index;
+};
 
 /**
  * Lista virtualizada de productos parecidos con mejor precio.
@@ -65,11 +71,12 @@ export const SimilarProductsList = memo(function SimilarProductsList({
 
   return (
     <FixedSizeList
-      height={Math.min(220, Math.max(76, items.length * 74))}
+      height={Math.min(240, Math.max(84, items.length * 82))}
       width="100%"
       itemCount={items.length}
-      itemSize={74}
+      itemSize={82}
       itemData={items}
+      itemKey={getSimilarItemKey}
     >
       {SimilarRow}
     </FixedSizeList>

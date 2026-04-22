@@ -1,4 +1,4 @@
-import { useCallback, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 
 /**
  * Props del bottom sheet.
@@ -32,6 +32,8 @@ export interface BottomSheetProps {
  *   Overlay con panel inferior.
  */
 export function BottomSheet({ open, title, children, onClose }: BottomSheetProps) {
+  const titleId = useId();
+  const sheetRef = useRef<HTMLElement | null>(null);
   const [dragStart, setDragStart] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState(0);
 
@@ -57,17 +59,42 @@ export function BottomSheet({ open, title, children, onClose }: BottomSheetProps
     setDragOffset(0);
   }, [dragOffset, onClose]);
 
+  useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    sheetRef.current?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [onClose, open]);
+
   if (!open) {
     return null;
   }
 
   return (
-    <div className="fixed inset-0 z-40 flex items-end bg-app/70 backdrop-blur-sm">
-      <button className="absolute inset-0 cursor-default" aria-label="Cerrar" onClick={onClose} />
+    <div className="fixed inset-0 z-40 flex items-end bg-app/80">
+      <button
+        className="absolute inset-0 cursor-default focus-visible:outline-none"
+        aria-label="Cerrar"
+        onClick={onClose}
+      />
       <section
-        className="pb-safe apple-card-shadow relative z-10 max-h-dvh w-full overflow-y-auto rounded-t-xl bg-panel p-5 text-ink-dark transition-transform"
+        ref={sheetRef}
+        className="pb-safe verge-ring relative z-10 max-h-dvh w-full overflow-y-auto rounded-t-3xl bg-panel p-5 text-white transition-transform duration-200 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-verge-focus"
         style={{ transform: `translateY(${dragOffset}px)` }}
-        aria-label={title}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
       >
         <div
           className="mb-4 flex touch-none flex-col items-center gap-3"
@@ -76,8 +103,10 @@ export function BottomSheet({ open, title, children, onClose }: BottomSheetProps
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
         >
-          <div className="h-1.5 w-12 rounded-full bg-black/20" />
-          <h2 className="text-center text-lg font-bold">{title}</h2>
+          <div className="h-1.5 w-12 rounded-full bg-blue" />
+          <h2 id={titleId} className="verge-label text-center text-blue">
+            {title}
+          </h2>
         </div>
         {children}
       </section>

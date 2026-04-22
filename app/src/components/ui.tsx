@@ -3,10 +3,14 @@ import type { ButtonHTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAt
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
 
 const buttonClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-blue text-white',
-  secondary: 'bg-ink-dark text-white',
-  danger: 'bg-ink-dark text-white',
-  ghost: 'bg-transparent text-link-dark ring-1 ring-link-dark',
+  primary:
+    'bg-blue text-black hover:bg-white/20 hover:text-black hover:ring-1 hover:ring-verge-hover-ring focus-visible:border focus-visible:border-verge-purple focus-visible:bg-verge-focus focus-visible:text-white',
+  secondary:
+    'bg-panel text-muted-dark hover:bg-white/20 hover:text-black hover:ring-1 hover:ring-verge-hover-ring focus-visible:border focus-visible:border-verge-purple focus-visible:bg-verge-focus focus-visible:text-white',
+  danger:
+    'border border-verge-purple bg-transparent text-white hover:bg-verge-purple hover:text-white focus-visible:border-verge-purple focus-visible:bg-verge-focus focus-visible:text-white',
+  ghost:
+    'border border-blue bg-transparent text-blue hover:bg-blue hover:text-black focus-visible:border-verge-purple focus-visible:bg-verge-focus focus-visible:text-white',
 };
 
 /**
@@ -25,7 +29,7 @@ export interface AppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> 
 }
 
 /**
- * Boton base mobile-first con alto tactil minimo.
+ * Boton base mobile-first con estilo pill editorial.
  *
  * Args:
  *   variant: Variante visual.
@@ -39,11 +43,13 @@ export function AppButton({
   variant = 'primary',
   className = '',
   children,
+  type = 'button',
   ...props
 }: AppButtonProps) {
   return (
     <button
-      className={`min-tap rounded-full px-4 py-2 text-base font-normal leading-tight tracking-normal transition hover:brightness-110 focus:outline-2 focus:outline-blue active:bg-button-active active:text-ink-dark disabled:cursor-not-allowed disabled:opacity-50 ${buttonClasses[variant]} ${className}`}
+      type={type}
+      className={`min-tap verge-button-label rounded-3xl px-6 py-2 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-verge-focus active:bg-button-active active:opacity-50 disabled:cursor-not-allowed disabled:opacity-50 ${buttonClasses[variant]} ${className}`}
       {...props}
     >
       {children}
@@ -77,9 +83,9 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 export function TextInput({ label, className = '', ...props }: TextInputProps) {
   return (
     <label className={`grid gap-2 text-sm text-muted ${className}`}>
-      <span className="font-semibold">{label}</span>
+      <span className="verge-label text-muted">{label}</span>
       <input
-        className="min-tap rounded-xl border-4 border-black/5 bg-panel-soft px-4 text-ink-dark outline-none transition placeholder:text-tertiary focus:outline-2 focus:outline-blue"
+        className="min-tap rounded-sm border border-white bg-app px-4 text-white outline-none transition-colors duration-150 placeholder:text-muted focus:border-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-verge-focus"
         {...props}
       />
     </label>
@@ -114,9 +120,9 @@ export interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement
 export function SelectField({ label, children, ...props }: SelectFieldProps) {
   return (
     <label className="grid gap-2 text-sm text-muted">
-      <span className="font-semibold">{label}</span>
+      <span className="verge-label text-muted">{label}</span>
       <select
-        className="min-tap rounded-xl border-4 border-black/5 bg-panel-soft px-4 text-ink-dark outline-none transition focus:outline-2 focus:outline-blue"
+        className="min-tap rounded-sm border border-white bg-app px-4 text-white outline-none transition-colors duration-150 focus:border-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-verge-focus"
         {...props}
       >
         {children}
@@ -135,7 +141,9 @@ export function SelectField({ label, children, ...props }: SelectFieldProps) {
  *   Elemento visual skeleton.
  */
 export function SkeletonBlock({ className = 'h-12' }: { className?: string }) {
-  return <div className={`animate-pulse rounded-lg bg-black/10 ${className}`} />;
+  return (
+    <div className={`animate-pulse verge-card border-white/30 motion-reduce:animate-none ${className}`} />
+  );
 }
 
 /**
@@ -150,9 +158,9 @@ export function SkeletonBlock({ className = 'h-12' }: { className?: string }) {
  */
 export function EmptyState({ title, detail }: { title: string; detail?: string }) {
   return (
-    <div className="rounded-lg bg-panel p-5 text-center text-ink-dark apple-card-shadow">
-      <p className="font-semibold">{title}</p>
-      {detail ? <p className="mt-1 text-sm text-muted">{detail}</p> : null}
+    <div className="verge-card p-5 text-center text-white">
+      <p className="verge-label text-blue">{title}</p>
+      {detail ? <p className="mt-2 text-sm leading-relaxed text-muted">{detail}</p> : null}
     </div>
   );
 }

@@ -48,9 +48,9 @@ export const PriceComparison = memo(function PriceComparison({
   }[signal];
 
   const signalClass = {
-    good: 'text-link',
+    good: 'text-blue',
     average: 'text-muted',
-    high: 'text-ink-dark',
+    high: 'text-white',
   }[signal];
 
   if (loading) {
@@ -69,25 +69,25 @@ export const PriceComparison = memo(function PriceComparison({
   return (
     <section className="grid gap-3">
       {currentPrice ? (
-        <div className={`rounded-lg bg-panel p-4 font-semibold apple-card-shadow ${signalClass}`}>
-          {signalText}
+        <div className={`verge-card p-4 font-semibold ${signalClass}`}>
+          <span className="verge-label">{signalText}</span>
           {isBest ? (
-            <span className="ml-2 rounded-full bg-blue px-3 py-1 text-xs text-white">
+            <span className="verge-label ml-2 rounded-full bg-blue px-3 py-1 text-black">
               MEJOR PRECIO
             </span>
           ) : null}
         </div>
       ) : null}
 
-      <div className="overflow-hidden rounded-lg bg-panel apple-card-shadow">
+      <div className="verge-card overflow-hidden">
         {sortedPrices.map((item, index) => (
           <div
             key={`${item.supermarket_id}-${item.recorded_at}`}
-            className="flex min-h-12 items-center justify-between gap-3 px-4"
+            className="flex min-h-12 items-center justify-between gap-3 border-b border-white/20 px-4 last:border-b-0"
           >
             <div className="min-w-0">
-              <p className="truncate text-sm font-semibold">{item.supermarket_name}</p>
-              {index === 0 ? <p className="text-xs text-link">MEJOR PRECIO</p> : null}
+              <p className="truncate text-sm font-bold text-white">{item.supermarket_name}</p>
+              {index === 0 ? <p className="verge-label text-blue">MEJOR PRECIO</p> : null}
             </div>
             <p className="font-mono text-link">{formatPrice(item.price)}</p>
           </div>

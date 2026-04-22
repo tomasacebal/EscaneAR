@@ -79,11 +79,7 @@ export function App({ fallback }: AppProps) {
       <Toaster
         position="top-center"
         toastOptions={{
-          style: {
-            background: '#272729',
-            color: '#ffffff',
-            boxShadow: 'rgba(0, 0, 0, 0.22) 3px 5px 30px 0',
-          },
+          className: 'verge-card text-white',
         }}
       />
     </SWRConfig>

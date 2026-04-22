@@ -19,18 +19,21 @@ export interface SessionHistoryListProps {
 
 function HistoryRow({ index, style, data }: ListChildComponentProps<SessionHistoryItem[]>) {
   const item = data[index];
+
   return (
-    <div style={style} className="px-1 py-1">
-      <div className="flex h-full items-center justify-between gap-3 rounded-lg bg-panel px-4 text-ink-dark apple-card-shadow">
+    <div style={style} className="border-l border-verge-rule px-3 py-1">
+      <div className="verge-card flex h-full items-center justify-between gap-3 px-4 text-white">
         <div className="min-w-0">
-          <p className="truncate text-sm font-semibold">{item.product.description}</p>
-          <p className="truncate text-xs text-muted">{item.supermarket.name}</p>
+          <p className="truncate text-sm font-bold leading-none">{item.product.description}</p>
+          <p className="verge-label mt-1 truncate text-muted">{item.supermarket.name}</p>
         </div>
         <p className="font-mono text-link">{formatPrice(item.price)}</p>
       </div>
     </div>
   );
 }
+
+const getHistoryItemKey = (index: number, data: SessionHistoryItem[]) => data[index]?.id ?? index;
 
 /**
  * Lista virtualizada de productos escaneados en la sesion.
@@ -46,15 +49,16 @@ export const SessionHistoryList = memo(function SessionHistoryList({ items }: Se
     return <EmptyState title="Sin escaneos aun" detail="Los ultimos productos aparecen aca." />;
   }
 
-  const height = Math.min(220, Math.max(84, items.length * 70));
+  const height = Math.min(240, Math.max(88, items.length * 76));
 
   return (
     <FixedSizeList
       height={height}
       width="100%"
       itemCount={items.length}
-      itemSize={70}
+      itemSize={76}
       itemData={items}
+      itemKey={getHistoryItemKey}
     >
       {HistoryRow}
     </FixedSizeList>

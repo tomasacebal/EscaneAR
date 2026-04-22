@@ -69,7 +69,7 @@ export const SupermarketPicker = memo(function SupermarketPicker({
       />
 
       {selected ? (
-        <div className="rounded-lg bg-panel p-4 text-sm text-ink-dark apple-card-shadow">
+        <div className="verge-accent-card p-4 text-sm text-black">
           Sesion actual: <strong>{selected.name}</strong>
         </div>
       ) : null}
@@ -85,7 +85,8 @@ export const SupermarketPicker = memo(function SupermarketPicker({
           filteredSupermarkets.map((item) => (
             <button
               key={item.id}
-              className="min-tap rounded-lg bg-panel px-4 text-left font-semibold text-ink-dark transition active:bg-button-active apple-card-shadow"
+              type="button"
+              className="min-tap verge-card px-4 text-left font-semibold text-white transition-colors duration-150 hover:border-blue hover:text-verge-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-verge-focus active:bg-button-active"
               onClick={() => onSelect(item)}
             >
               {item.name}
