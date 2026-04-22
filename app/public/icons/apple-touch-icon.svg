@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="EscaneAR">
-  <rect width="180" height="180" rx="30" fill="#0f0f11"/>
-  <path d="M42 54h96v15H42zM42 111h96v15H42z" fill="#a3e635"/>
-  <path d="M54 42H39v39h15V57h24V42H54zm72 0v15h24v24h15V42h-39zM39 99v39h39v-15H54V99H39zm111 0v24h-24v15h39V99h-15z" fill="#f7f7ef"/>
-  <path d="M68 83h11v15H68zM87 83h8v15h-8zM104 83h11v15h-11z" fill="#f7f7ef"/>
+  <rect width="180" height="180" rx="30" fill="#131313"/>
+  <path d="M42 54h96v15H42zM42 111h96v15H42z" fill="#3cffd0"/>
+  <path d="M54 42H39v39h15V57h24V42H54zm72 0v15h24v24h15V42h-39zM39 99v39h39v-15H54V99H39zm111 0v24h-24v15h39V99h-15z" fill="#ffffff"/>
+  <path d="M68 83h11v15H68zM87 83h8v15h-8zM104 83h11v15h-11z" fill="#5200ff"/>
 </svg>
