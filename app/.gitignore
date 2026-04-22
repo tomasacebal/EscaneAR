@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dev-dist/
+.codex-*.log
+.codex-*.err
+.codex-*.png
+.env
+*.tsbuildinfo

@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-app: #0f0f11;
+  --color-panel: #18181b;
+  --color-panel-soft: #202024;
+  --color-ink: #f7f7ef;
+  --color-muted: #a1a1aa;
+  --color-line: #333337;
+  --color-good: #a3e635;
+  --color-warn: #facc15;
+  --color-bad: #f87171;
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
+  --height-body: 100dvh;
+}
+
+:root {
+  color-scheme: dark;
+  background: #0f0f11;
+  font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  color: #f7f7ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #0f0f11;
+  overflow: hidden;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+::selection {
+  background: #a3e635;
+  color: #0f0f11;
+}
+
+@utility pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@utility pt-safe {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+
+@utility min-tap {
+  min-height: 48px;
+  min-width: 48px;
+}
