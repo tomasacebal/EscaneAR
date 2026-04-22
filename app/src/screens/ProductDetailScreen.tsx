@@ -71,12 +71,12 @@ export default function ProductDetailScreen({ product, onBack }: ProductDetailSc
           ) : sortedPrices.length > 0 ? (
             <div className="grid gap-2">
               {sortedPrices.map((item) => (
-                <article key={`${item.supermarket_id}-${item.created_at}`} className="rounded-lg bg-panel p-4 apple-card-shadow">
+                <article key={`${item.supermarket_id}-${item.recorded_at}`} className="rounded-lg bg-panel p-4 apple-card-shadow">
                   <div className="flex items-center justify-between gap-3">
                     <p className="font-semibold">{item.supermarket_name}</p>
                     <p className="font-mono text-link">{formatPrice(item.price)}</p>
                   </div>
-                  <p className="mt-1 text-xs text-muted">{formatRelativeDate(item.created_at)}</p>
+                  <p className="mt-1 text-xs text-muted">{formatRelativeDate(item.recorded_at)}</p>
                 </article>
               ))}
             </div>

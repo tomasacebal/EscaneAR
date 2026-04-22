@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react';
 import { EmptyState, SkeletonBlock } from '@/components/ui';
-import { formatPrice, median, priceSignal } from '@/lib/format';
+import { formatPrice } from '@/lib/format';
 import type { ComparePrice } from '@/lib/schemas';
 
 /**
@@ -38,20 +38,19 @@ export const PriceComparison = memo(function PriceComparison({
 }: PriceComparisonProps) {
   const sortedPrices = useMemo(() => [...prices].sort((a, b) => a.price - b.price), [prices]);
   const currentPrice = sortedPrices.find((item) => item.supermarket_id === currentSupermarketId);
-  const otherPrices = sortedPrices.filter((item) => item.supermarket_id !== currentSupermarketId);
-  const signal = priceSignal(currentPrice?.price ?? 0, median(otherPrices.map((item) => item.price)));
+  const signal = currentPrice?.price_signal ?? 'average';
   const isBest = currentPrice ? sortedPrices[0]?.supermarket_id === currentSupermarketId : false;
 
   const signalText = {
     good: 'Buen precio',
     average: 'Precio promedio',
-    bad: 'Precio alto',
+    high: 'Precio alto',
   }[signal];
 
   const signalClass = {
     good: 'text-link',
     average: 'text-muted',
-    bad: 'text-ink-dark',
+    high: 'text-ink-dark',
   }[signal];
 
   if (loading) {
@@ -83,7 +82,7 @@ export const PriceComparison = memo(function PriceComparison({
       <div className="overflow-hidden rounded-lg bg-panel apple-card-shadow">
         {sortedPrices.map((item, index) => (
           <div
-            key={`${item.supermarket_id}-${item.created_at}`}
+            key={`${item.supermarket_id}-${item.recorded_at}`}
             className="flex min-h-12 items-center justify-between gap-3 px-4"
           >
             <div className="min-w-0">

@@ -55,13 +55,13 @@ export function ScanResultSheet({
   onClose,
   onSaved,
 }: ScanResultSheetProps) {
-  const product = result?.product ?? null;
+  const product = result ?? null;
   const latestPrice = useMemo(
     () =>
-      result?.price_history
+      result?.prices
         .filter((item) => item.supermarket_id === supermarket.id)
-        .sort((a, b) => b.created_at.localeCompare(a.created_at))[0] ?? null,
-    [result?.price_history, supermarket.id],
+        .sort((a, b) => b.recorded_at.localeCompare(a.recorded_at))[0] ?? null,
+    [result?.prices, supermarket.id],
   );
   const [showPriceInput, setShowPriceInput] = useState(false);
   const [manualSimilarQuery, setManualSimilarQuery] = useState('');

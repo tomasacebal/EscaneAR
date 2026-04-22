@@ -191,7 +191,7 @@ export function useCreatePrice() {
     mutation.trigger(input, {
       optimisticData: {
         id: `tmp-${crypto.randomUUID()}`,
-        created_at: new Date().toISOString(),
+        recorded_at: new Date().toISOString(),
         ...input,
       },
       rollbackOnError: true,

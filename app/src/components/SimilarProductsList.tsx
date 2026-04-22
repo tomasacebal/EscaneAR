@@ -30,7 +30,7 @@ function SimilarRow({ index, style, data }: ListChildComponentProps<SimilarProdu
             {item.product.brand} · {item.supermarket_name}
           </p>
         </div>
-        <p className="font-mono text-link">{formatPrice(item.best_price)}</p>
+        <p className="font-mono text-link">{formatPrice(item.price)}</p>
       </div>
     </div>
   );

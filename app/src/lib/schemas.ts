@@ -3,6 +3,11 @@ import { z } from 'zod';
 const idSchema = z.coerce.string().min(1);
 
 export const unitSchema = z.enum(['kg', 'g', 'l', 'ml', 'un', 'pack']);
+export const priceSignalSchema = z.enum(['good', 'average', 'high']);
+
+const optionalTextSchema = z.string().nullable().optional().transform((value) => value ?? '');
+const optionalQuantitySchema = z.coerce.number().positive().nullable().optional().transform((value) => value ?? 1);
+const optionalUnitSchema = unitSchema.nullable().optional().transform((value) => value ?? 'un');
 
 export const backendErrorSchema = z.object({
   detail: z.string(),
@@ -15,11 +20,11 @@ export const supermarketSchema = z.object({
 
 export const productSchema = z.object({
   id: idSchema,
-  barcode: z.string().min(1).optional(),
+  barcode: z.string().min(1),
   description: z.string().min(1),
-  brand: z.string().min(1),
-  quantity: z.coerce.number().positive(),
-  unit: unitSchema,
+  brand: optionalTextSchema,
+  quantity: optionalQuantitySchema,
+  unit: optionalUnitSchema,
   supermarket_ids: z.array(idSchema).default([]),
 });
 
@@ -28,17 +33,18 @@ export const priceSchema = z.object({
   product_id: idSchema,
   supermarket_id: idSchema,
   price: z.coerce.number().nonnegative(),
-  created_at: z.string().min(1),
+  recorded_at: z.string().min(1),
 });
 
-export const priceWithSupermarketSchema = priceSchema.extend({
-  supermarket: supermarketSchema.optional(),
-  supermarket_name: z.string().optional(),
+export const priceWithSupermarketSchema = z.object({
+  supermarket_id: idSchema,
+  supermarket_name: z.string().min(1),
+  price: z.coerce.number().nonnegative(),
+  recorded_at: z.string().min(1),
 });
 
-export const barcodeProductResponseSchema = z.object({
-  product: productSchema.nullable(),
-  price_history: z.array(priceWithSupermarketSchema).default([]),
+export const barcodeProductResponseSchema = productSchema.extend({
+  prices: z.array(priceWithSupermarketSchema).default([]),
 });
 
 export const comparePriceSchema = z.object({
@@ -46,15 +52,16 @@ export const comparePriceSchema = z.object({
   supermarket_id: idSchema,
   supermarket_name: z.string().min(1),
   price: z.coerce.number().nonnegative(),
-  created_at: z.string().min(1),
+  recorded_at: z.string().min(1),
+  price_signal: priceSignalSchema,
 });
 
 export const similarProductSchema = z.object({
   product: productSchema,
   supermarket_id: idSchema,
   supermarket_name: z.string().min(1),
-  best_price: z.coerce.number().nonnegative(),
-  created_at: z.string().min(1),
+  price: z.coerce.number().nonnegative(),
+  recorded_at: z.string().min(1),
 });
 
 export const createProductInputSchema = z.object({
@@ -76,6 +83,7 @@ export const createSupermarketInputSchema = z.object({
 });
 
 export type Unit = z.infer<typeof unitSchema>;
+export type PriceSignal = z.infer<typeof priceSignalSchema>;
 export type BackendError = z.infer<typeof backendErrorSchema>;
 export type Supermarket = z.infer<typeof supermarketSchema>;
 export type Product = z.infer<typeof productSchema>;

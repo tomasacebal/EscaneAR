@@ -68,7 +68,7 @@ export function median(values: number[]): number | null {
 export function priceSignal(
   price: number,
   referenceMedian: number | null,
-): 'good' | 'average' | 'bad' {
+): 'good' | 'average' | 'high' {
   if (referenceMedian === null || referenceMedian === 0) {
     return 'average';
   }
@@ -78,7 +78,7 @@ export function priceSignal(
   }
 
   if (price >= referenceMedian * 1.1) {
-    return 'bad';
+    return 'high';
   }
 
   return 'average';
