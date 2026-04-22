@@ -10,3 +10,4 @@ __pycache__
 *.pyc
 backend/.env
 backend/IMPLEMENTATION_PLAN.md
+/backend/scripts
